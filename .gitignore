@@ -1,2 +1,47 @@
+# Python cache
 __pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual environment
+venv/
 .venv/
+env/
+
+# Environment variables
+.env
+.env.*
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+*.log
+logs/
+
+# Model checkpoints
+*.pth
+*.pt
+*.ckpt
+*.h5
+*.onnx
+
+# Dataset
+dataset/
+datasets/
+data/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Test Sang
+fileThongTin.txt
+
+#Continue...
+``
