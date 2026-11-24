@@ -1,8 +1,7 @@
 def search_students(students: list, keyword: str) -> list:
-    """Tìm kiếm sinh viên theo MSSV hoặc Họ tên (không phân biệt hoa thường)."""
-    kw = keyword.strip().lower()
-    if not kw:
+    if not keyword or not keyword.strip():
         return students
+    kw = keyword.strip().lower()
     return [
         sv for sv in students
         if kw in sv.get("ma_sv", "").lower() or kw in sv.get("ho_ten", "").lower()
@@ -10,21 +9,19 @@ def search_students(students: list, keyword: str) -> list:
 
 
 def sort_students_by_gpa(students: list, descending: bool = True) -> list:
-    """Sắp xếp danh sách sinh viên theo GPA."""
-    return sorted(students, key=lambda sv: sv.get("gpa", 0.0), reverse=descending)
+    return sorted(
+        students,
+        key=lambda sv: sv.get("gpa") if sv.get("gpa") is not None else -1.0,
+        reverse=descending
+    )
 
 
 def get_gpa_statistics(students: list) -> dict:
-    """Thống kê GPA cao nhất, thấp nhất và trung bình của nhóm."""
-    if not students:
-        return {"max_sv": None, "min_sv": None, "avg_gpa": 0.0}
+    valid_students = [sv for sv in students if sv.get("gpa") is not None]
+    if not valid_students:
+        return {"avg_gpa": 0.0, "max_sv": None, "min_sv": None}
 
-    max_sv = max(students, key=lambda sv: sv.get("gpa", 0.0))
-    min_sv = min(students, key=lambda sv: sv.get("gpa", 0.0))
-    avg_gpa = round(sum(sv.get("gpa", 0.0) for sv in students) / len(students), 2)
-
-    return {
-        "max_sv": max_sv,
-        "min_sv": min_sv,
-        "avg_gpa": avg_gpa
-    }
+    avg_gpa = round(sum(sv["gpa"] for sv in valid_students) / len(valid_students), 2)
+    max_sv = max(valid_students, key=lambda sv: sv["gpa"])
+    min_sv = min(valid_students, key=lambda sv: sv["gpa"])
+    return {"avg_gpa": avg_gpa, "max_sv": max_sv, "min_sv": min_sv}
