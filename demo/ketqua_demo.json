@@ -1,0 +1,102 @@
+[
+  {
+    "ma_sv": "DEMO001",
+    "ho_ten": "Long",
+    "mon_hoc": [
+      {
+        "ten_mon": "Lập trình Python",
+        "diem_thanh_phan_1": 7.0,
+        "diem_thanh_phan_2": 9.0,
+        "diem_tong_ket": 8.2
+      },
+      {
+        "ten_mon": "Cơ sở dữ liệu",
+        "diem_thanh_phan_1": 8.0,
+        "diem_thanh_phan_2": 9.0,
+        "diem_tong_ket": 8.6
+      },
+      {
+        "ten_mon": "Xử lý dữ liệu",
+        "diem_thanh_phan_1": 6.5,
+        "diem_thanh_phan_2": 7.3,
+        "diem_tong_ket": 7.0
+      }
+    ],
+    "gpa": 7.93
+  },
+  {
+    "ma_sv": "DEMO002",
+    "ho_ten": "Sang",
+    "mon_hoc": [
+      {
+        "ten_mon": "Lập trình Python",
+        "diem_thanh_phan_1": 8.0,
+        "diem_thanh_phan_2": 9.0,
+        "diem_tong_ket": 8.6
+      },
+      {
+        "ten_mon": "Cơ sở dữ liệu",
+        "diem_thanh_phan_1": 9.0,
+        "diem_thanh_phan_2": 9.0,
+        "diem_tong_ket": 9.0
+      },
+      {
+        "ten_mon": "Xử lý dữ liệu",
+        "diem_thanh_phan_1": 8.0,
+        "diem_thanh_phan_2": 10.0,
+        "diem_tong_ket": 9.2
+      }
+    ],
+    "gpa": 8.93
+  },
+  {
+    "ma_sv": "DEMO003",
+    "ho_ten": "Khoa",
+    "mon_hoc": [
+      {
+        "ten_mon": "Lập trình Python",
+        "diem_thanh_phan_1": 5.0,
+        "diem_thanh_phan_2": 6.0,
+        "diem_tong_ket": 5.6
+      },
+      {
+        "ten_mon": "Cơ sở dữ liệu",
+        "diem_thanh_phan_1": 6.0,
+        "diem_thanh_phan_2": 7.0,
+        "diem_tong_ket": 6.6
+      },
+      {
+        "ten_mon": "Xử lý dữ liệu",
+        "diem_thanh_phan_1": 7.0,
+        "diem_thanh_phan_2": 8.0,
+        "diem_tong_ket": 7.6
+      }
+    ],
+    "gpa": 6.6
+  },
+  {
+    "ma_sv": "DEMO004",
+    "ho_ten": "Trọng",
+    "mon_hoc": [
+      {
+        "ten_mon": "Lập trình Python",
+        "diem_thanh_phan_1": 6.0,
+        "diem_thanh_phan_2": 7.0,
+        "diem_tong_ket": 6.6
+      },
+      {
+        "ten_mon": "Cơ sở dữ liệu",
+        "diem_thanh_phan_1": 7.5,
+        "diem_thanh_phan_2": 8.5,
+        "diem_tong_ket": 8.1
+      },
+      {
+        "ten_mon": "Xử lý dữ liệu",
+        "diem_thanh_phan_1": 8.0,
+        "diem_thanh_phan_2": 8.0,
+        "diem_tong_ket": 8.0
+      }
+    ],
+    "gpa": 7.57
+  }
+]

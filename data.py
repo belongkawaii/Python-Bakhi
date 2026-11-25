@@ -1,8 +1,11 @@
 import json
 import os
+import tempfile
 
 THU_MUC_FILE_NAY = os.path.dirname(os.path.abspath(__file__))
-DUONG_DAN_MAC_DINH = os.path.join(THU_MUC_FILE_NAY, "ketqua.json")
+DUONG_DAN_MAC_DINH = os.path.join(
+    THU_MUC_FILE_NAY, os.environ.get("BAKHI_DATA_FILE", "ketqua.json")
+)
 DIEM_MIN = 0
 DIEM_MAX = 10
 
@@ -67,8 +70,8 @@ def kiem_tra_sinh_vien(sv, ds_hien_co=None):
         ma_da_co = set()
         for sv_cu in ds_hien_co:
             if isinstance(sv_cu, dict) and isinstance(sv_cu.get("ma_sv"), str):
-                ma_da_co.add(sv_cu["ma_sv"].strip())
-        if ma_sv.strip() in ma_da_co:
+                ma_da_co.add(sv_cu["ma_sv"].strip().casefold())
+        if ma_sv.strip().casefold() in ma_da_co:
             loi.append(f"MSSV {ma_sv.strip()} đã tồn tại.")
     if not _la_chuoi_khong_rong(sv.get("ho_ten")):
         loi.append("Họ tên không được để trống.")
@@ -103,6 +106,8 @@ def kiem_tra_sinh_vien(sv, ds_hien_co=None):
     return loi
 
 def kiem_tra_danh_sach(ds_sinh_vien):
+    if not isinstance(ds_sinh_vien, list):
+        return ["Dữ liệu phải là một danh sách [ ] sinh viên."]
     loi = []
     da_duyet = []
     for i, sv in enumerate(ds_sinh_vien, start=1):
@@ -154,20 +159,31 @@ def doc_json(duong_dan=DUONG_DAN_MAC_DINH):
     if not isinstance(du_lieu, list):
         raise ValueError(f"File '{duong_dan}' phải chứa một danh sách [ ] sinh viên.")
 
-    return du_lieu
+    loi = kiem_tra_danh_sach(du_lieu)
+    if loi:
+        raise ValueError("Dữ liệu sinh viên không hợp lệ: " + " | ".join(loi))
+
+    # Import tại đây để tránh vòng import với tinh_diem.py.
+    from tinh_diem import tinh_diem_sinh_vien
+
+    return [tinh_diem_sinh_vien(chuan_hoa_sinh_vien(sv)) for sv in du_lieu]
 
 
 def ghi_json(ds_sinh_vien, duong_dan=DUONG_DAN_MAC_DINH):
     if not isinstance(ds_sinh_vien, list):
         return False
-    file_tam = duong_dan + ".tmp"
+    file_tam = None
     try:
-        with open(file_tam, "w", encoding="utf-8") as f:
-            json.dump(ds_sinh_vien, f, ensure_ascii=False, indent=2)
+        thu_muc = os.path.dirname(os.path.abspath(duong_dan))
+        with tempfile.NamedTemporaryFile(
+            mode="w", encoding="utf-8", dir=thu_muc, suffix=".tmp", delete=False
+        ) as f:
+            file_tam = f.name
+            json.dump(ds_sinh_vien, f, ensure_ascii=False, indent=2, allow_nan=False)
         os.replace(file_tam, duong_dan)
         return True
     except (OSError, TypeError, ValueError):
-        if os.path.exists(file_tam):
+        if file_tam is not None and os.path.exists(file_tam):
             os.remove(file_tam)
         return False
 

@@ -1,0 +1,16 @@
+{
+  "ma_sv": "DEMO005",
+  "ho_ten": "Sinh viên Demo",
+  "mon_hoc": [
+    {
+      "ten_mon": "Lập trình Python",
+      "diem_thanh_phan_1": 7.0,
+      "diem_thanh_phan_2": 9.0
+    },
+    {
+      "ten_mon": "Cơ sở dữ liệu",
+      "diem_thanh_phan_1": 6.5,
+      "diem_thanh_phan_2": 7.3
+    }
+  ]
+}
