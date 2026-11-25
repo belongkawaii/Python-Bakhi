@@ -1,0 +1,40 @@
+[
+  {
+    "ma_sv": "5011101111",
+    "ho_ten": "Khoa Em",
+    "mon_hoc": [
+      {
+        "ten_mon": "Lý",
+        "diem_thanh_phan_1": 9.0,
+        "diem_thanh_phan_2": 4.0,
+        "diem_tong_ket": 6.0
+      },
+      {
+        "ten_mon": "Hóa",
+        "diem_thanh_phan_1": 4.0,
+        "diem_thanh_phan_2": 9.0,
+        "diem_tong_ket": 7.0
+      }
+    ],
+    "gpa": 6.5
+  },
+  {
+    "ma_sv": "5011133111",
+    "ho_ten": "Khang",
+    "mon_hoc": [
+      {
+        "ten_mon": "Lý",
+        "diem_thanh_phan_1": 4.0,
+        "diem_thanh_phan_2": 5.0,
+        "diem_tong_ket": 4.6
+      },
+      {
+        "ten_mon": "Hóa",
+        "diem_thanh_phan_1": 2.0,
+        "diem_thanh_phan_2": 5.0,
+        "diem_tong_ket": 3.8
+      }
+    ],
+    "gpa": 4.2
+  }
+]

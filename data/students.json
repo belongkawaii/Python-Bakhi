@@ -1,0 +1,59 @@
+[
+  {
+    "ma_sv": "1001",
+    "ho_ten": "Kem1",
+    "mon_hoc": [
+      {
+        "ten_mon": "nhac",
+        "diem_1": 6.0,
+        "diem_2": 8.0,
+        "diem_tong_ket": 7.2
+      },
+      {
+        "ten_mon": "ngu",
+        "diem_1": 3.0,
+        "diem_2": 8.0,
+        "diem_tong_ket": 6.0
+      }
+    ],
+    "gpa": 6.6
+  },
+  {
+    "ma_sv": "1003",
+    "ho_ten": "Kem",
+    "mon_hoc": [
+      {
+        "ten_mon": "đá",
+        "diem_1": 1.0,
+        "diem_2": 4.0,
+        "diem_tong_ket": 2.8
+      },
+      {
+        "ten_mon": "đấ",
+        "diem_1": 2.0,
+        "diem_2": 3.0,
+        "diem_tong_ket": 2.6
+      }
+    ],
+    "gpa": 2.7
+  },
+  {
+    "ma_sv": "1004",
+    "ho_ten": "Kem4",
+    "mon_hoc": [
+      {
+        "ten_mon": "111",
+        "diem_1": 3.0,
+        "diem_2": 2.0,
+        "diem_tong_ket": 2.4
+      },
+      {
+        "ten_mon": "1111",
+        "diem_1": 3.0,
+        "diem_2": 3.0,
+        "diem_tong_ket": 3.0
+      }
+    ],
+    "gpa": 2.7
+  }
+]
