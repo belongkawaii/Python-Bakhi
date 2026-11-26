@@ -8,7 +8,7 @@ Mô tả 2 module đã có:
 |---|---|
 | [data.py](data.py) | Kiểm tra dữ liệu đầu vào, đọc/ghi file JSON |
 | [tinh_diem.py](tinh_diem.py) | Tính điểm tổng kết từng môn và GPA |
-| [test_tinh_diem.py](test_tinh_diem.py) | Kiểm thử các phép tính trong `tinh_diem.py` |
+| [tests/test_core.py](tests/test_core.py) | Kiểm thử các phép tính, dữ liệu và luồng lưu/đọc JSON |
 
 Yêu cầu: Python 3.10 trở lên (đã chạy thử với 3.11). Chỉ dùng thư viện chuẩn, không cần cài thêm gì.
 
@@ -160,8 +160,6 @@ Kết quả: `Đã lưu: Nguyễn Văn A - GPA 7.3` (Toán 7.6, Lý 7.0).
 ## Kiểm thử
 
 ```bash
-python -m unittest test_tinh_diem -v
+python -m unittest discover -s tests -p test_core.py -v
 ```
-Seng sẽ share sau 
-
-ĐÂY LÀ TỔNG HỢP NHIỆM VỤ CỦA SANG + TRỌNG LÀM, LƯU Ý FILE 'test_tinh_diem.txt' sẽ được dùng để code khi chưa có dữ liệu nên không up lên github, liên hệ Seng + 1 chai dầu ăn sẽ gửi riêng !!!
+Hướng dẫn chạy giao diện, API, toàn bộ kiểm thử và kịch bản demo được cập nhật trong [README.md](README.md).

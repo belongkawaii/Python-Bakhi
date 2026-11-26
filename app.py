@@ -43,7 +43,11 @@ def save_new_student(sv_da_tinh: dict, current_list: list):
         with urllib.request.urlopen(req, timeout=1) as res:
             return json.loads(res.read().decode("utf-8"))
 
-    updated_list = current_list + [sv_da_tinh]
+    students = doc_json()
+    loi = kiem_tra_sinh_vien(sv_da_tinh, students)
+    if loi:
+        raise ValueError(" | ".join(loi))
+    updated_list = students + [sv_da_tinh]
     if not ghi_json(updated_list):
         raise IOError("Ghi dữ liệu vào ketqua.json thất bại.")
 
@@ -55,16 +59,10 @@ def delete_student_by_id(ma_sv: str, current_list: list) -> list:
         urllib.request.urlopen(req, timeout=1)
         return load_students_data()
 
-    updated = [sv for sv in current_list if sv["ma_sv"].strip().lower() != ma_sv.strip().lower()]
+    updated = [sv for sv in doc_json() if sv["ma_sv"].strip().casefold() != ma_sv.strip().casefold()]
     if not ghi_json(updated):
         raise IOError("Cập nhật file ketqua.json thất bại.")
     return updated
-
-    updated = [sv for sv in current_list if sv["ma_sv"].strip().lower() != ma_sv.strip().lower()]
-    if not ghi_json(updated):
-        raise IOError("Cập nhật file ketqua.json thất bại.")
-    return updated
-
 
 st.set_page_config(
     page_title="Quản lý Điểm - Nhóm Bá Khí",
@@ -123,7 +121,7 @@ if "students" not in st.session_state:
         st.session_state.students = ds_khoi_tao
     except Exception as e:
         st.error(f"Lỗi đọc dữ liệu JSON ban đầu: {e}")
-        st.session_state.students = []
+        st.stop()
 
 if "active_menu" not in st.session_state:
     st.session_state.active_menu = "nhap_diem"
@@ -333,11 +331,16 @@ elif menu == "du_lieu":
     c1, c2 = st.columns(2)
 
     if c1.button("Lưu dữ liệu hiện tại ra file ketqua.json", use_container_width=True):
-        if ghi_json(st.session_state.students):
-            st.success("Lưu file ketqua.json thành công!", icon="✅")
-            st.toast("Lưu file ketqua.json thành công!", icon="💾")
-        else:
-            st.error("Lỗi khi lưu file ketqua.json!")
+        try:
+            students = load_students_data()
+            if ghi_json(students):
+                st.session_state.students = students
+                st.success("Lưu file ketqua.json thành công!", icon="✅")
+                st.toast("Lưu file ketqua.json thành công!", icon="💾")
+            else:
+                st.error("Lỗi khi lưu file ketqua.json!")
+        except Exception as e:
+            st.error(f"Lỗi khi lưu file: {e}")
 
     if c2.button("Đọc lại dữ liệu từ file ketqua.json", use_container_width=True):
         try:
